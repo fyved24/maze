@@ -1,4 +1,5 @@
 import maze
+import numpy as np
 from matplotlib import pyplot as plt
 import matplotlib.cm as cm
 
@@ -13,4 +14,5 @@ if __name__ == '__main__':
     size = (10, 10)
     start = (5, 5)
     var = maze.Maze(size, start)
-    print(var)
+    num_rows, num_cols = var.get_shape()
+    M = var.get_blocks()
