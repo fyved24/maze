@@ -4,6 +4,7 @@ from matplotlib import pyplot as plt
 import matplotlib.cm as cm
 from block import Block
 
+
 class Maze:
     def __init__(self, size, start):     # start是一个元组
         self.r_num, self.c_num = size
@@ -52,7 +53,7 @@ class Maze:
             else:
                 self.r, self.c = self.road.pop()     # 没有元素跳出上一个元素
 
-    def create_blocks(self):
+    def create_blocks(self):  # 转化为块矩阵
         for row in range(0, self.r_num):
             line = []
             for col in range(0, self.c_num):
@@ -63,12 +64,16 @@ class Maze:
     def get_blocks(self):
         return self.blocks
 
+    def get_block(self, locate):
+        x, y = locate
+        return self.blocks[x][y]
+
     def get_maze(self):
         return self.maze
 
-    def get_shape(self):
+    def get_shape(self):               # 获取尺寸大小
         return self.r_num, self.c_num
 
-    def get_point(self, point):
+    def get_point(self, point):        # 获取一个块的状态
         x, y = point
         return self.maze[x, y]
