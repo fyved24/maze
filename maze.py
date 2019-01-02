@@ -1,24 +1,26 @@
 import numpy as np
 import random
+import copy
 from matplotlib import pyplot as plt
 import matplotlib.cm as cm
 from block import Block
 
 
 class Maze:
-    def __init__(self, size, start):     # start是一个元组
+    def __init__(self, size, end, start):     # start是一个元组 起止点与主函数相反 便于记录位置
         self.r_num, self.c_num = size
         self.maze = np.zeros((self.r_num, self.c_num, 5), dtype=np.uint8)    # [0, 0]: 第一个数 0是墙 1是路 1, 第二个数 1是已经被访问过
         self.road = [start]  # 走过的路的栈
         self.r, self.c = start     # 行和列
         self.maze[self.r, self.c, 0] = 1     # 起点打开
-        self.dfs()            # 生成迷宫
+        self.answer = []
+        self.dfs(end)            # 生成迷宫
         # 打开出口
-        self.maze[self.r_num - 1, self.c_num - 1, 2] = 1
+        self.maze[self.r_num - 1, self.c_num - 1, 2] = 1    # 最后一个点
         self.blocks = []        # 根据矩阵生成的迷宫
         self.create_blocks()
 
-    def dfs(self):
+    def dfs(self, end):
         # 生成迷宫
         while len(self.road) > 0:  # 如果栈中还有元素
             self.maze[self.r, self.c, 4] = 1
@@ -34,6 +36,8 @@ class Maze:
             if len(directions):   # 如果还有方向可走
                 self.road.append((self.r, self.c))
                 direction = random.choice(directions)
+                if end == (self.r, self.c):
+                    self.answer = copy.deepcopy(self.road)
                 if direction == 'L':
                     self.maze[self.r, self.c, 0] = 1  # 设置为已经访问过
                     self.c -= 1
@@ -77,3 +81,6 @@ class Maze:
     def get_point(self, point):        # 获取一个块的状态
         x, y = point
         return self.maze[x, y]
+
+    def get_answer(self):
+        return self.answer
