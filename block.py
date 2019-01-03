@@ -3,7 +3,7 @@ import numpy as np
 
 class Block(object):
     def __init__(self, M):
-        self.block = np.zeros((3, 3), dtype=np.uint8)
+        self.block = np.zeros((3, 3), dtype=int)
         self.block[1, 1] = 1
         self.block[1, 0] = M[0]
         self.block[0, 1] = M[1]
