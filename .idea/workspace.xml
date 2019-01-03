@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2778048b-2983-445e-8f9f-5037dfd8e918" name="Default Changelist" comment="整理代码">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/matrix.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/maze.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/maze.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/block.py" beforeDir="false" afterPath="$PROJECT_DIR$/block.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maze.py" beforeDir="false" afterPath="$PROJECT_DIR$/maze.py" afterDir="false" />
-    </list>
+    <list default="true" id="2778048b-2983-445e-8f9f-5037dfd8e918" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,8 +57,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
+            <state relative-caret-position="-118">
+              <caret line="45" column="44" lean-forward="true" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -378,7 +368,7 @@
       <workItem from="1546427766382" duration="27642000" />
       <workItem from="1546456161421" duration="70000" />
       <workItem from="1546489636371" duration="5394000" />
-      <workItem from="1546497486319" duration="6428000" />
+      <workItem from="1546497486319" duration="6672000" />
     </task>
     <task id="LOCAL-00001" summary="编写README">
       <created>1545983695514</created>
@@ -443,11 +433,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546494951416</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="添加从文件中加载">
+      <created>1546504042013</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1546504042014</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63282000" />
+    <option name="totallyTimeSpent" value="63526000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -460,19 +457,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49940547" visible="true" weight="0.17091152" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49940547" visible="true" weight="0.044235926" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50059456" side_tool="true" weight="0.03322259" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32844576" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.13636364" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" visible="true" weight="0.30498534" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49946752" weight="0.18914956" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3295838" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.5299891" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3900293" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5005325" side_tool="true" weight="0.38931298" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3295838" />
@@ -568,18 +566,10 @@
     <MESSAGE value="不想改了" />
     <MESSAGE value="完成game over后自动寻路" />
     <MESSAGE value="整理代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="整理代码" />
+    <MESSAGE value="添加从文件中加载" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加从文件中加载" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/game.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="self.r" language="Python" />
@@ -706,8 +696,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        <state relative-caret-position="-118">
+          <caret line="45" column="44" lean-forward="true" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
