@@ -14,7 +14,6 @@ def print_text(screen, font, x, y, text, color=(255, 255, 255)):
 
 color = 255, 255, 0
 
-
 if __name__ == '__main__':
     pygame.init()
     font1 = pygame.font.Font(None, 50)
@@ -29,18 +28,19 @@ if __name__ == '__main__':
     game_over = True
     seconds = 31
     size = (rows, columns)
-    screen_size = (size[0] * 90, size[1] * 90)    # 屏幕大小
+    screen_size = (size[0] * 90, size[1] * 90)  # 屏幕大小
     full_matrix = np.ones((columns * 3, rows * 3), dtype=np.uint8)
-    screen = pygame.display.set_mode(screen_size)        # 设置屏幕大小
+    screen = pygame.display.set_mode(screen_size)  # 设置屏幕大小
+    screen.fill((169, 169, 169))  # 屏幕填充颜色
     mouse_icon = pygame.image.load("mouse.png").convert_alpha()  # 老鼠
     mouse_icon = pygame.transform.scale(mouse_icon, (30, 30))
     block_icon = pygame.image.load("block.png").convert_alpha()  # 墙砖
     block_icon = pygame.transform.scale(block_icon, (30, 30))
-    start = (rows//2, columns//2)   # 开始点
+    start = (rows // 2, columns // 2)  # 开始点
     end = (rows - 1, columns - 1)
-    locate_x = start[0] * 3 + 1
+    locate_x = start[0] * 3 + 1  # 位于哪一块
     locate_y = start[1] * 3 + 1
-    pos_y = locate_x * 30
+    pos_y = locate_x * 30  # 绘制块的位置
     pos_x = locate_y * 30
     # 下面是自动生成迷宫
     #############
@@ -63,7 +63,7 @@ if __name__ == '__main__':
                 temp.tofile("matrix.bin")
                 sys.exit()
             key_s = pygame.key.get_pressed()
-            if event.type == MOUSEBUTTONDOWN:       # 捕捉鼠标
+            if event.type == MOUSEBUTTONDOWN:  # 捕捉鼠标
                 mouse_down = event.button
                 mouse_down_x, mouse_down_y = event.pos
                 mouse_down_x = mouse_down_x // 30
@@ -71,21 +71,23 @@ if __name__ == '__main__':
                 mouse_flag = True
             # 移动
             # 算出下一个点，然后判断能否移动
-            if key_s[97]:   # A左
+            if key_s[97]:  # A左
                 if full_matrix[locate_y][locate_x - 1] == 1:
                     locate_x -= 1
             if key_s[97 + 3]:  # D右
                 if full_matrix[locate_y][locate_x + 1] == 1:
                     locate_x += 1
-            if key_s[119]:   # W上
+            if key_s[119]:  # W上
                 if full_matrix[locate_y - 1][locate_x] == 1:
                     locate_y -= 1
-            if key_s[115]:    # S下
+            if key_s[115]:  # S下
                 if full_matrix[locate_y + 1][locate_x]:
                     if locate_y == 28 and locate_y == 28:
                         win_flag = True
                     else:
                         locate_y += 1
+            if key_s[103]:
+                game_over = True
             if key_s[K_RETURN]:
                 if game_over:
                     win_flag = False
@@ -99,16 +101,15 @@ if __name__ == '__main__':
         pos = (pos_y, pos_x)
         # 如果游戏结束
         if game_over:
-            screen.fill((169, 169, 169))  # 屏幕填充颜色
+            # screen.fill((169, 169, 169))  # 屏幕填充颜色
             if win_flag:
                 print_text(screen, font1, 0, 80, "WIN!!!")
             elif clock_start != 0:
-                print_text(screen, font2, 0, 160, str(answer[::-1][:5]))
-                print_text(screen, font2, 0, 190, str(answer[::-1][5:10]))
-                print_text(screen, font2, 0, 220, str(answer[::-1][10:15]))
-                print_text(screen, font2, 0, 250, str(answer[::-1][15:20]))
-                print_text(screen, font2, 0, 280, str(answer[::-1][20:]))
-
+                print_text(screen, font1, 0, 80, "GAME OVER!!!")
+                while len(answer):
+                    x, y, = answer.pop()
+                    screen.blit(mouse_icon, ((x * 3 + 1) * 30, (y * 3 + 1) * 30))
+                    pygame.display.update()
             print_text(screen, font1, 0, 0, "Press Enter to start...")
         screen.blit(mouse_icon, pos)
         if not game_over:
@@ -127,5 +128,5 @@ if __name__ == '__main__':
             if win_flag:
                 game_over = True
             screen.blit(mouse_icon, pos)
-            print_text(screen, font1, 0, 80, "Time :" + str(int(seconds - current)))
+            print_text(screen, font1, 0, 130, "Time :" + str(int(seconds - current)))
         pygame.display.update()
