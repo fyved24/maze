@@ -12,6 +12,18 @@ def print_text(screen, font, x, y, text, color=(255, 255, 255)):
     screen.blit(imgText, (x, y))
 
 
+def draw_maze(screen, block_icon, rows, cols, full_matrix):
+    screen.fill((169, 169, 169))  # 屏幕填充颜色
+    for y in range(0, rows * 3):
+        for x in range(0, cols * 3):
+            if full_matrix[x][y] == 0:
+                screen.blit(block_icon, (y * 30, x * 30))
+
+
+def draw_mouse(screen, mouse_icon, pos):
+    screen.blit(mouse_icon, pos)
+
+
 color = 255, 255, 0
 
 if __name__ == '__main__':
@@ -22,7 +34,7 @@ if __name__ == '__main__':
     mouse_down = 0
     mouse_down_x = mouse_down_y = 0
     # pygame.mouse.set_visible(False)
-    rows = 10  # 后续改成输入
+    rows = 16  # 后续改成输入
     columns = 10
     clock_start = 0
     game_over = True
@@ -99,17 +111,20 @@ if __name__ == '__main__':
         if seconds - current < 0:
             game_over = True
         pos = (pos_y, pos_x)
+        pos_y = locate_x * 30  # 更新老鼠位置
+        pos_x = locate_y * 30
         # 如果游戏结束
         if game_over:
             # screen.fill((169, 169, 169))  # 屏幕填充颜色
-            if win_flag:
+            if win_flag:  # 如果赢了
                 print_text(screen, font1, 0, 80, "WIN!!!")
-            elif clock_start != 0:
+            elif clock_start != 0:        # 不是第一次开始
                 print_text(screen, font1, 0, 80, "GAME OVER!!!")
                 while len(answer):
                     x, y, = answer.pop()
-                    screen.blit(mouse_icon, ((x * 3 + 1) * 30, (y * 3 + 1) * 30))
-                    pygame.display.update()
+                    pos = ((x * 3 + 1) * 30, (y * 3 + 1) * 30)
+                    draw_mouse(screen, mouse_icon, pos)
+                pygame.display.update()
             print_text(screen, font1, 0, 0, "Press Enter to start...")
         screen.blit(mouse_icon, pos)
         if not game_over:
@@ -117,16 +132,12 @@ if __name__ == '__main__':
             if mouse_flag:
                 full_matrix[mouse_down_y][mouse_down_x] = not full_matrix[mouse_down_y][mouse_down_x]
                 mouse_flag = False
-            pos_y = locate_x * 30
-            pos_x = locate_y * 30
-            # 创建迷宫
-            screen.fill((169, 169, 169))  # 屏幕填充颜色
-            for y in range(0, rows * 3):
-                for x in range(0, columns * 3):
-                    if full_matrix[x][y] == 0:
-                        screen.blit(block_icon, (y * 30, x * 30))
+
+            draw_maze(screen, block_icon, rows, columns, full_matrix)
             if win_flag:
                 game_over = True
-            screen.blit(mouse_icon, pos)
+            draw_mouse(screen, mouse_icon, pos)
             print_text(screen, font1, 0, 130, "Time :" + str(int(seconds - current)))
         pygame.display.update()
+
+
