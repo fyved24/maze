@@ -86,7 +86,7 @@ if __name__ == '__main__':
                 c = input("保存当前迷宫?(y/n)")
                 if c in ["Y", "y"]:
                     np.savetxt("matrix.txt", full_matrix, fmt='%d')  # 迷宫存盘
-                    file = open('data.txt', 'w')
+                    file = open('answer.txt', 'w')
                     file.write(str(answer))
                     file.close()
                 sys.exit()
