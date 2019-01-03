@@ -125,6 +125,7 @@ if __name__ == '__main__':
                     pos = ((x * 3 + 1) * 30, (y * 3 + 1) * 30)
                     draw_mouse(screen, mouse_icon, pos)
                 pygame.display.update()
+            draw_maze(screen, block_icon, rows, columns, full_matrix)
             print_text(screen, font1, 0, 0, "Press Enter to start...")
         screen.blit(mouse_icon, pos)
         if not game_over:
