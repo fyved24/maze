@@ -1,15 +1,13 @@
 import numpy as np
 import random
 import copy
-from matplotlib import pyplot as plt
-import matplotlib.cm as cm
 from block import Block
 
 
 class Maze:
     def __init__(self, size, end, start):     # start是一个元组 起止点与主函数相反 便于记录位置
         self.r_num, self.c_num = size
-        self.maze = np.zeros((self.r_num, self.c_num, 5), dtype=np.uint8)    # [0, 0]: 第一个数 0是墙 1是路 1, 第二个数 1是已经被访问过
+        self.maze = np.zeros((self.r_num, self.c_num, 5), dtype=int)    # [0, 0]: 第一个数 0是墙 1是路 1, 第二个数 1是已经被访问过
         self.road = [start]  # 走过的路的栈
         self.r, self.c = start     # 行和列
         self.maze[self.r, self.c, 0] = 1     # 起点打开
