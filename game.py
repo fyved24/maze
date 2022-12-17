@@ -35,7 +35,7 @@ if __name__ == '__main__':
     mouse_down_x = mouse_down_y = 0
     # pygame.mouse.set_visible(False)
     full_matrix = np.loadtxt("matrix.txt", dtype='int')
-    columns, rows = full_matrix.shape    #
+    columns, rows = full_matrix.shape  #
     answer = []
     with open("answer.txt", 'r') as f:
         for line in f.readlines():
@@ -99,21 +99,24 @@ if __name__ == '__main__':
                 mouse_flag = True
             # 移动
             # 算出下一个点，然后判断能否移动
-            if key_s[97]:  # A左
-                if full_matrix[locate_y][locate_x - 1] == 1:
-                    locate_x -= 1
-            if key_s[97 + 3]:  # D右
-                if full_matrix[locate_y][locate_x + 1] == 1:
-                    locate_x += 1
-            if key_s[119]:  # W上
-                if full_matrix[locate_y - 1][locate_x] == 1:
-                    locate_y -= 1
-            if key_s[115]:  # S下
-                if full_matrix[locate_y + 1][locate_x]:
-                    if locate_y == 28 and locate_y == 28:
-                        win_flag = True
-                    else:
+            try:
+                if key_s[97]:  # A左
+                    if full_matrix[locate_y][locate_x - 1] == 1:
+                        locate_x -= 1
+                if key_s[97 + 3]:  # D右
+                    if full_matrix[locate_y][locate_x + 1] == 1:
+                        locate_x += 1
+                if key_s[119]:  # W上
+                    if full_matrix[locate_y - 1][locate_x] == 1:
+                        locate_y -= 1
+                if key_s[115]:  # S下
+                    if full_matrix[locate_y + 1][locate_x] == 1:
                         locate_y += 1
+
+            except IndexError as e:
+                win_flag = True
+                print('似乎要赢了')
+            print(f"移动到{locate_x}, {locate_x})")
             if key_s[103]:
                 game_over = True
             if key_s[K_RETURN]:
@@ -122,8 +125,8 @@ if __name__ == '__main__':
                     game_over = False
                     score = 0
                     seconds = 50
-                    clock_start = time.clock()
-        current = time.clock() - clock_start
+                    clock_start = time.perf_counter()
+        current = time.perf_counter() - clock_start
         if seconds - current < 0:
             game_over = True
         pos = (pos_y, pos_x)
@@ -134,7 +137,7 @@ if __name__ == '__main__':
             # screen.fill((169, 169, 169))  # 屏幕填充颜色
             if win_flag:  # 如果赢了
                 print_text(screen, font1, 0, 80, "WIN!!!")
-            elif clock_start != 0:        # 不是第一次开始
+            elif clock_start != 0:  # 不是第一次开始
                 print_text(screen, font1, 0, 80, "GAME OVER!!!")
                 while len(answer):
                     x, y, = answer.pop()
@@ -154,5 +157,3 @@ if __name__ == '__main__':
             draw_mouse(screen, mouse_icon, pos)
             print_text(screen, font1, 0, 130, "Time :" + str(int(seconds - current)))
         pygame.display.update()
-
-
